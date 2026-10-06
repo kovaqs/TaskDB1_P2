@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1.Forms
+namespace TaskDB1.Forms
 {
-    public partial class FrmAgregarTarea : Form
+    public partial class FrmListadoTareas : Form
     {
-        public FrmAgregarTarea()
+        public FrmListadoTareas()
         {
             InitializeComponent();
         }

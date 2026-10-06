@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApp1.Forms;
+using TaskDB1.Forms;
 
-namespace WindowsFormsApp1
+namespace TaskDB1
 {
     internal static class Program
     {

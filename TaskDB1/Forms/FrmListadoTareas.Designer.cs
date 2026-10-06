@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp1.Forms
+﻿namespace TaskDB1.Forms
 {
     partial class FrmListadoTareas
     {
