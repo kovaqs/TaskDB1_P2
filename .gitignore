@@ -1,0 +1,24 @@
+# Visual Studio user and workspace files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# Build outputs
+**/bin/
+**/obj/
+**/Debug/
+**/Release/
+**/publish/
+TestResults/
+
+# Temporary files and logs
+*.tmp
+*.temp
+*.bak
+*.cache
+*.log
+*~
+~$*
