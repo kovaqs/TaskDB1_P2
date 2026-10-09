@@ -16,5 +16,22 @@ namespace TaskDB1.Forms
         {
             InitializeComponent();
         }
+
+        private void FrmListadoTareas_Load(object sender, EventArgs e)
+        {
+            CargarEstados();
+        }
+
+        private void CargarEstados()
+        {
+            cboEstado.Items.Clear();
+
+            cboEstado.Items.Add("Todas");
+            cboEstado.Items.Add("Pendiente");
+            cboEstado.Items.Add("Completada");
+
+            cboEstado.SelectedIndex = 0;
+        }
+
     }
 }

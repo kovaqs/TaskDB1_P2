@@ -16,5 +16,10 @@ namespace TaskDB1.Forms
         {
             InitializeComponent();
         }
+
+        private void FrmAgregarTarea_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
