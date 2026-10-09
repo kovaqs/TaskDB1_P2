@@ -16,5 +16,15 @@ namespace TaskDB1.Forms
         {
             InitializeComponent();
         }
+
+        private void FrmListadoTareas_Load(object sender, EventArgs e)
+        {
+            dgvTareas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvTareas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvTareas.MultiSelect = false;
+            dgvTareas.ReadOnly = true;
+            dgvTareas.AllowUserToAddRows = false;
+            dgvTareas.AllowUserToDeleteRows = false;
+        }
     }
 }
