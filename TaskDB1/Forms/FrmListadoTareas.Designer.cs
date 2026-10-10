@@ -46,16 +46,18 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 24);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Estado";
+            this.label1.Text = "Filtrar estado:";
             // 
             // cmbEstado
             // 
             this.cmbEstado.FormattingEnabled = true;
+            this.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEstado.Location = new System.Drawing.Point(44, 44);
             this.cmbEstado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(248, 24);
             this.cmbEstado.TabIndex = 1;
+            this.cmbEstado.SelectedIndexChanged += new System.EventHandler(this.cmbEstado_SelectedIndexChanged);
             // 
             // btnFiltrar
             // 
@@ -66,6 +68,7 @@
             this.btnFiltrar.TabIndex = 2;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
             // btnCompletar
             // 
@@ -76,6 +79,8 @@
             this.btnCompletar.TabIndex = 3;
             this.btnCompletar.Text = "Marcar como Completada";
             this.btnCompletar.UseVisualStyleBackColor = true;
+            this.btnCompletar.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right));
+            this.btnCompletar.Click += new System.EventHandler(this.btnCompletar_Click);
             // 
             // btnNuevaTarea
             // 
@@ -86,6 +91,8 @@
             this.btnNuevaTarea.TabIndex = 4;
             this.btnNuevaTarea.Text = "Nueva Tarea";
             this.btnNuevaTarea.UseVisualStyleBackColor = true;
+            this.btnNuevaTarea.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right));
+            this.btnNuevaTarea.Click += new System.EventHandler(this.btnNuevaTarea_Click);
             // 
             // dgvTareas
             // 
@@ -96,12 +103,15 @@
             this.dgvTareas.RowHeadersWidth = 51;
             this.dgvTareas.Size = new System.Drawing.Size(996, 383);
             this.dgvTareas.TabIndex = 5;
+            this.dgvTareas.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             // 
             // FrmListadoTareas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.MinimumSize = new System.Drawing.Size(820, 480);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Controls.Add(this.dgvTareas);
             this.Controls.Add(this.btnNuevaTarea);
             this.Controls.Add(this.btnCompletar);

@@ -14,6 +14,8 @@ namespace TaskDB1.Forms
 {
     public partial class FrmListadoTareas : Form
     {
+        private bool cargandoEstados;
+        private bool completando;
         public FrmListadoTareas()
         {
             InitializeComponent();
@@ -28,6 +30,7 @@ namespace TaskDB1.Forms
 
         private void CargarEstados()
         {
+            cargandoEstados = true;
             cmbEstado.Items.Clear();
 
             cmbEstado.Items.Add("Todas");
@@ -35,6 +38,7 @@ namespace TaskDB1.Forms
             cmbEstado.Items.Add("Completada");
 
             cmbEstado.SelectedIndex = 0;
+            cargandoEstados = false;
         }
 
         private void ConfigurarDataGridView()
@@ -54,9 +58,13 @@ namespace TaskDB1.Forms
             {
                 using (var connection = DatabaseConnection.GetConnection())
                 using (var command = new SqlCommand(
-                    "SELECT Id, Titulo, Descripcion, Estado, FechaCreacion FROM dbo.Tareas ORDER BY FechaCreacion DESC, Id DESC", connection))
+                    "SELECT Id, Titulo, Descripcion, Estado, FechaCreacion FROM dbo.Tareas " +
+                    "WHERE (@Estado IS NULL OR Estado = @Estado) ORDER BY FechaCreacion DESC, Id DESC", connection))
                 using (var adapter = new SqlDataAdapter(command))
                 {
+                    string estado = cmbEstado.SelectedItem as string;
+                    command.Parameters.Add("@Estado", SqlDbType.NVarChar, 10).Value =
+                        estado == "Pendiente" || estado == "Completada" ? (object)estado : DBNull.Value;
                     var table = new DataTable();
                     adapter.Fill(table);
                     var previousTable = dgvTareas.DataSource as DataTable;
@@ -87,6 +95,68 @@ namespace TaskDB1.Forms
                     previousTable.Dispose();
                 MessageBox.Show(this, "No se pudieron cargar las tareas.\n\n" + ex.Message, "TaskDB",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            CargarTareas();
+        }
+
+        private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!cargandoEstados && IsHandleCreated)
+                CargarTareas();
+        }
+
+        private void btnNuevaTarea_Click(object sender, EventArgs e)
+        {
+            using (var form = new FrmAgregarTarea())
+                form.ShowDialog(this);
+            CargarTareas();
+        }
+
+        private void btnCompletar_Click(object sender, EventArgs e)
+        {
+            if (completando)
+                return;
+            if (dgvTareas.SelectedRows.Count == 0)
+            {
+                MessageBox.Show(this, "Selecciona una tarea para marcarla como completada.", "TaskDB",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int id = Convert.ToInt32(dgvTareas.SelectedRows[0].Cells["Id"].Value);
+            completando = true;
+            btnCompletar.Enabled = false;
+            try
+            {
+                int updated;
+                using (var connection = DatabaseConnection.GetConnection())
+                using (var command = new SqlCommand(
+                    "UPDATE dbo.Tareas SET Estado = @Estado WHERE Id = @Id AND Estado <> @Estado", connection))
+                {
+                    command.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                    command.Parameters.Add("@Estado", SqlDbType.NVarChar, 10).Value = "Completada";
+                    connection.Open();
+                    updated = command.ExecuteNonQuery();
+                }
+
+                MessageBox.Show(this, updated == 1 ? "La tarea se marcó como completada." :
+                    "La tarea ya está completada o ya no está disponible.", "TaskDB",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarTareas();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, "No se pudo completar la tarea.\n\n" + ex.Message, "TaskDB",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                completando = false;
+                btnCompletar.Enabled = true;
             }
         }
     }
