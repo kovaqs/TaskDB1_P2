@@ -28,7 +28,7 @@ namespace TaskDB1
                     "TaskDB", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Application.Run(new FrmAgregarTarea());
+            Application.Run(new FrmListadoTareas());
         }
     }
 }
