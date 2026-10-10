@@ -45,13 +45,14 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Titulo";
+            this.label1.Text = "Título de la tarea:";
             // 
             // txtTitulo
             // 
             this.txtTitulo.Location = new System.Drawing.Point(53, 66);
             this.txtTitulo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTitulo.Name = "txtTitulo";
+            this.txtTitulo.MaxLength = 200;
             this.txtTitulo.Size = new System.Drawing.Size(556, 22);
             this.txtTitulo.TabIndex = 1;
             // 
@@ -60,7 +61,10 @@
             this.txtDescripcion.Location = new System.Drawing.Point(53, 138);
             this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(556, 22);
+            this.txtDescripcion.MaxLength = 2000;
+            this.txtDescripcion.Multiline = true;
+            this.txtDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDescripcion.Size = new System.Drawing.Size(556, 42);
             this.txtDescripcion.TabIndex = 3;
             // 
             // label2
@@ -71,7 +75,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 16);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Descripcion";
+            this.label2.Text = "Descripción:";
             // 
             // label3
             // 
@@ -81,7 +85,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 16);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Estado";
+            this.label3.Text = "Estado: Pendiente";
             // 
             // btnGuardar
             // 
@@ -92,6 +96,7 @@
             this.btnGuardar.TabIndex = 5;
             this.btnGuardar.Text = "Guardar Tarea";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnCancelar
             // 
@@ -102,12 +107,19 @@
             this.btnCancelar.TabIndex = 6;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // FrmAgregarTarea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(719, 304);
+            this.AcceptButton = this.btnGuardar;
+            this.CancelButton = this.btnCancelar;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label3);
@@ -117,7 +129,7 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmAgregarTarea";
-            this.Text = "FrmAgregarTarea";
+            this.Text = "Nueva tarea - TaskDB";
             this.Load += new System.EventHandler(this.FrmAgregarTarea_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
