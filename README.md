@@ -8,3 +8,4 @@ Sistema de gestión de tareas en SQL.
 - Denilson Yat Latz, 202204932
 - Frander Reginaldo Caal Xol, 202151163
 - Kristel Paola Pop Ramírez,202444205
+- José Solórzano 202444657
