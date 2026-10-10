@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.cboEstado = new System.Windows.Forms.ComboBox();
+            this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.btnFiltrar = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCompletar = new System.Windows.Forms.Button();
             this.btnNuevaTarea = new System.Windows.Forms.Button();
             this.dgvTareas = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTareas)).BeginInit();
@@ -46,16 +46,18 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 24);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Estado";
+            this.label1.Text = "Filtrar estado:";
             // 
-            // cboEstado
+            // cmbEstado
             // 
-            this.cboEstado.FormattingEnabled = true;
-            this.cboEstado.Location = new System.Drawing.Point(44, 44);
-            this.cboEstado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cboEstado.Name = "cboEstado";
-            this.cboEstado.Size = new System.Drawing.Size(248, 24);
-            this.cboEstado.TabIndex = 1;
+            this.cmbEstado.FormattingEnabled = true;
+            this.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEstado.Location = new System.Drawing.Point(44, 44);
+            this.cmbEstado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbEstado.Name = "cmbEstado";
+            this.cmbEstado.Size = new System.Drawing.Size(248, 24);
+            this.cmbEstado.TabIndex = 1;
+            this.cmbEstado.SelectedIndexChanged += new System.EventHandler(this.cmbEstado_SelectedIndexChanged);
             // 
             // btnFiltrar
             // 
@@ -66,16 +68,19 @@
             this.btnFiltrar.TabIndex = 2;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
-            // button2
+            // btnCompletar
             // 
-            this.button2.Location = new System.Drawing.Point(867, 513);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(160, 28);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Nueva Tarea";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCompletar.Location = new System.Drawing.Point(820, 513);
+            this.btnCompletar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCompletar.Name = "btnCompletar";
+            this.btnCompletar.Size = new System.Drawing.Size(220, 28);
+            this.btnCompletar.TabIndex = 3;
+            this.btnCompletar.Text = "Marcar como Completada";
+            this.btnCompletar.UseVisualStyleBackColor = true;
+            this.btnCompletar.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right));
+            this.btnCompletar.Click += new System.EventHandler(this.btnCompletar_Click);
             // 
             // btnNuevaTarea
             // 
@@ -86,6 +91,8 @@
             this.btnNuevaTarea.TabIndex = 4;
             this.btnNuevaTarea.Text = "Nueva Tarea";
             this.btnNuevaTarea.UseVisualStyleBackColor = true;
+            this.btnNuevaTarea.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right));
+            this.btnNuevaTarea.Click += new System.EventHandler(this.btnNuevaTarea_Click);
             // 
             // dgvTareas
             // 
@@ -96,21 +103,24 @@
             this.dgvTareas.RowHeadersWidth = 51;
             this.dgvTareas.Size = new System.Drawing.Size(996, 383);
             this.dgvTareas.TabIndex = 5;
+            this.dgvTareas.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             // 
             // FrmListadoTareas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.MinimumSize = new System.Drawing.Size(820, 480);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Controls.Add(this.dgvTareas);
             this.Controls.Add(this.btnNuevaTarea);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnCompletar);
             this.Controls.Add(this.btnFiltrar);
-            this.Controls.Add(this.cboEstado);
+            this.Controls.Add(this.cmbEstado);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmListadoTareas";
-            this.Text = "FrmListadoTareas";
+            this.Text = "Listado de tareas - TaskDB";
             this.Load += new System.EventHandler(this.FrmListadoTareas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTareas)).EndInit();
             this.ResumeLayout(false);
@@ -121,9 +131,9 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cboEstado;
+        private System.Windows.Forms.ComboBox cmbEstado;
         private System.Windows.Forms.Button btnFiltrar;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCompletar;
         private System.Windows.Forms.Button btnNuevaTarea;
         private System.Windows.Forms.DataGridView dgvTareas;
     }

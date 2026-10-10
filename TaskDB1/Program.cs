@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TaskDB1.Forms;
+using TaskDB1.Data;
 
 namespace TaskDB1
 {
@@ -17,7 +15,17 @@ namespace TaskDB1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmAgregarTarea());
+            try
+            {
+                DatabaseConnection.Initialize();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo preparar la base de datos. Verifica que SQL Server LocalDB esté instalado.\n\n" + ex.Message,
+                    "TaskDB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Application.Run(new FrmListadoTareas());
         }
     }
 }
