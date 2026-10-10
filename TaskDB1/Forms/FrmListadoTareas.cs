@@ -20,6 +20,7 @@ namespace TaskDB1.Forms
         private void FrmListadoTareas_Load(object sender, EventArgs e)
         {
             CargarEstados();
+            ConfigurarDataGridView();
         }
 
         private void CargarEstados()
@@ -33,5 +34,14 @@ namespace TaskDB1.Forms
             cboEstado.SelectedIndex = 0;
         }
 
+        private void ConfigurarDataGridView()
+        {
+            dgvTareas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvTareas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvTareas.MultiSelect = false;
+            dgvTareas.ReadOnly = true;
+            dgvTareas.AllowUserToAddRows = false;
+            dgvTareas.AllowUserToDeleteRows = false;
+        }
     }
 }
