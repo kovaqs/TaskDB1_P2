@@ -33,8 +33,7 @@ namespace TaskDB1.Data
                 using (var connection = new SqlConnection(builder.ConnectionString))
                 using (var command = connection.CreateCommand())
                 {
-                    // CREATE DATABASE requires identifiers and file names in dynamic SQL.
-                    // QUOTENAME and escaped literals keep the parameter values safe.
+                    // CREATE DATABASE requiere SQL dinámico; se escapan los valores de los parámetros.
                     command.CommandText = @"
 IF DB_ID(@DatabaseName) IS NULL
 BEGIN
@@ -83,7 +82,7 @@ END";
             AppDomain.CurrentDomain.SetData("DataDirectory", directory);
 
             var builder = new SqlConnectionStringBuilder(settings.ConnectionString);
-            // A separate catalog per directory also permits isolated validation databases.
+            // Cada carpeta usa su propio catálogo para evitar colisiones.
             using (var hash = SHA256.Create())
             {
                 string suffix = BitConverter.ToString(hash.ComputeHash(Encoding.UTF8.GetBytes(directory.ToUpperInvariant())))
