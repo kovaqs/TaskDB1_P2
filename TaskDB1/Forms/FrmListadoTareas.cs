@@ -25,13 +25,13 @@ namespace TaskDB1.Forms
 
         private void CargarEstados()
         {
-            cboEstado.Items.Clear();
+            cmbEstado.Items.Clear();
 
-            cboEstado.Items.Add("Todas");
-            cboEstado.Items.Add("Pendiente");
-            cboEstado.Items.Add("Completada");
+            cmbEstado.Items.Add("Todas");
+            cmbEstado.Items.Add("Pendiente");
+            cmbEstado.Items.Add("Completada");
 
-            cboEstado.SelectedIndex = 0;
+            cmbEstado.SelectedIndex = 0;
         }
 
         private void ConfigurarDataGridView()
