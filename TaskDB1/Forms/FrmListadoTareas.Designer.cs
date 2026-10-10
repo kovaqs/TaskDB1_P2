@@ -110,7 +110,7 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmListadoTareas";
-            this.Text = "FrmListadoTareas";
+            this.Text = "Listado de tareas - TaskDB";
             this.Load += new System.EventHandler(this.FrmListadoTareas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTareas)).EndInit();
             this.ResumeLayout(false);
