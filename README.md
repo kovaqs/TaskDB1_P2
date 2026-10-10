@@ -21,3 +21,9 @@ MSBuild.exe TaskDB1.sln /t:Build /p:Configuration=Debug
 ```
 
 La solución necesita el MSBuild de Visual Studio para las tareas de recursos de .NET Framework.
+
+## Uso
+
+El listado es la pantalla principal. **Nueva Tarea** abre el registro; **Guardar Tarea** guarda una tarea pendiente y regresa al listado. **Cancelar** regresa sin insertar. El título es obligatorio y admite hasta 200 caracteres; la descripción admite hasta 2000.
+
+El filtro permite ver **Todas**, **Pendiente** o **Completada**. **Marcar como Completada** actualiza la fila seleccionada y recarga el listado conservando el filtro. La fecha la genera SQL Server y se mantiene al completar una tarea.
