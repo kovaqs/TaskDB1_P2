@@ -21,5 +21,22 @@ namespace TaskDB1.Forms
         {
 
         }
+        private bool ValidarTitulo()
+        {
+            if (string.IsNullOrWhiteSpace(txtTitulo.Text))
+            {
+                MessageBox.Show(
+                    "El título de la tarea es obligatorio.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                txtTitulo.Focus();
+                return false;
+            }
+
+            return true;
+        }
     }
 }
