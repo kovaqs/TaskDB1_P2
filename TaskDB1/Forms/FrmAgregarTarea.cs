@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using TaskDB1.Data;
@@ -39,6 +33,14 @@ namespace TaskDB1.Forms
                 return false;
             }
 
+            if (txtTitulo.Text.Trim().Length > 200)
+            {
+                MessageBox.Show(this, "El título puede tener hasta 200 caracteres.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTitulo.Focus();
+                return false;
+            }
+
             return true;
         }
 
@@ -46,6 +48,13 @@ namespace TaskDB1.Forms
         {
             if (guardando || !ValidarTitulo())
                 return;
+            if (txtDescripcion.Text.Trim().Length > 2000)
+            {
+                MessageBox.Show(this, "La descripción puede tener hasta 2000 caracteres.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDescripcion.Focus();
+                return;
+            }
 
             guardando = true;
             btnGuardar.Enabled = false;
